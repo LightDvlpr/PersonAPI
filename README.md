@@ -11,7 +11,7 @@ Note: The below documentation has been constructed mostly for macOS. There might
 
 ## Installation
 
-Two installations are required. One for docker and one for node. 
+Two installations are required. One for docker desktop and one for node. 
 
 ## Docker
 
