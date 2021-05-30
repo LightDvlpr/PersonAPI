@@ -1,0 +1,47 @@
+version: '3.4'
+
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: personalDB
+    volumes:
+      - ./setPostgres.sql:/docker-entrypoint-initdb.d/setPostgres.sql
+    ports:
+      - '5432:5432'
+  api:
+    image: personapi
+    depends_on: 
+      - db
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/app
+  pgadmin-compose:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "test@gmail.com"
+      PGADMIN_DEFAULT_PASSWORD: "test123!"
+    ports: 
+      - "16543:80"
+    depends_on:
+        - postgres
+  testDB:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: TestPostgres
+      POSTGRES_DB: TestPersonalDB
+    volumes:
+      - ./testDB.sql:/docker-entrypoint-initdb.d/testDB.sql
+    ports:
+      - '2345:2345'
