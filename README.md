@@ -24,7 +24,7 @@ Install docker from [here](https://docs.docker.com/docker-for-mac/install/)
 
 NPM will be used to run the test file for the routes. 
 
-Install npm from [here](https://www.npmjs.com/get-npm)
+Install node from [here](https://www.npmjs.com/get-npm)
 
 ## Set it up
 
