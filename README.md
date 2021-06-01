@@ -201,7 +201,7 @@ Here's the cURL command:
 curl --location --request DELETE 'http://localhost:3000/persons/ID'
 ```
 
-### How to use PgAdmin while the application is running 
+# How to use PgAdmin while the application is running 
 
 PgAdmin allows you to explore the databse while you're running/entering in data to the database
 
