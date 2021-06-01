@@ -68,11 +68,11 @@ Container 4: PgAdmin. (Database administration tool)
 This API is built for you to be able to manage a database with people's information. 
 
 You are able to 
->`create a person object`
- `read a person object` 
-`read a person object + your preferred version`
-`update a person object`
-`delete a person object`.
+>`create a person object`      
+ `read a person object`       
+`read a person object + your preferred version`      
+`update a person object`      
+`delete a person object`       
 
 One particular feature of this application is that when you `update` an individual's information, a new version of that person will be created for that particular individual. 
 
@@ -207,42 +207,41 @@ PgAdmin allows you to explore the databse while you're running/entering in data 
 
 If you'd like to connect to PgAdmin then follow these instructions
 
-
-First, while the application is running, go to your browser and enter in the following address 
+>First, while the application is running, go to your browser and enter in the following address 
 ```
 http://localhost:16543     
 ```
 
-Second, enter in the login info.   
-- Email: `test@gmail.com`   
-- Password: `test123!` 
+>Second, enter in the login info.   
 
-Third, after you've logged in, you'll need to connect to the server.
+`Email: test@gmail.com`   
+`Password: test123!` 
+
+>Third, after you've logged in, you'll need to connect to the server.
 
 - On the pgAdmin dashboard you'll see 'Add new Server'. Click on that. 
 - In the general section you may choose a name for the server. 
-- Switch over to the connection tab and enter in the following info   
+- Switch over to the connection tab and enter in the following info:    
 
-- Host : `192.168.0.1`    
+` Host : 192.168.0.1`    
+`Port : 5432`
+`Maintenance database : personalDB`
+`Username: postgres`
+`Password: password`
 
-- Port : `5432`
-- Maintenance database : `personalDB`
-- Username: `postgres`
-- Password: `password`
+> Click on 'Save' and you are now connected to the server!
 
-- Click on 'Save' and you are now connected to the server!
-
-- To check the tables used in this DB: 
+To check the tables used in this DB: 
 --> Select Root
 --> Select PersonalDB
 --> Select Schemas
 --> Select Tables
 
-- Persons table keeps all IDs of the different people in your databse. 
-    - To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
+>Persons table keeps all IDs of the different people in your databse.     
+To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
 
-- PersonsVersions is where all versions of each person is kept track of
-    - To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
+>PersonsVersions is where all versions of each person is kept track of    
+To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
 
 
 # Testing
@@ -256,9 +255,9 @@ Just like the main database the test Database is also accessible through pgAdmin
 
 In order to access the test database through pgAdmin change the variables in the above pgAdmin access process to the following    
 
-- Host : `192.168.0.1`
-- Port : `2345`
-- Maintenance database : `TestPersonalDB`
-- Username: `TestPostgres`
-- Password: `password`
+`Host : 192.168.0.1`
+`Port : 2345`
+`Maintenance database : TestPersonalDB`
+`Username: TestPostgres`
+`Password: password`
 
