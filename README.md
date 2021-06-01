@@ -61,8 +61,8 @@ After you run the above commands you'll notice 3 containers will be created.
 
 Container 1: API    
 Container 2: Database     
-Container 3: Test Database
-Container 4: PgAdmin. (Database administration tool)
+Container 3: Test Database       
+Container 4: PgAdmin. (Database administration tool)    
 
 # What you can do
 
