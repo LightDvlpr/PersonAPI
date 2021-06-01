@@ -60,9 +60,8 @@ docker compose up
 After you run the above commands you'll notice 3 containers will be created. 
 
 Container 1: API    
-Container 2: Database     
-Container 3: Test Database       
-Container 4: PgAdmin. (Database administration tool)    
+Container 2: Database           
+Container 3: PgAdmin. (Database administration tool)    
 
 # What you can do
 
@@ -244,7 +243,6 @@ To check all values in this table, Right click on it and click View/Edit Data an
 >PersonsVersions is where all versions of each person is kept track of    
 To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
 
-
 # Testing
 
 In order to run the test file make sure you have Node installed.
@@ -255,16 +253,4 @@ run the command while the containers are alive
 
 ```npm test``` 
 
-
-These tests will be run against our test database.
-
-
->Just like the main database the test Database is also accessible through pgAdmin       
-In order to access the test database through pgAdmin change the variables in the above pgAdmin access process to the following    
-
-`Host : 192.168.0.1`.     
-`Port : 2345`.    
-`Maintenance database : TestPersonalDB`.   
-`Username: TestPostgres`.   
-`Password: password`.    
-
+These tests will be run against our database

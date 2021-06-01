@@ -34,14 +34,3 @@ services:
       - "16543:80"
     depends_on:
         - postgres
-  testDB:
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: password
-      POSTGRES_USER: TestPostgres
-      POSTGRES_DB: TestPersonalDB
-    volumes:
-      - ./testDB.sql:/docker-entrypoint-initdb.d/testDB.sql
-    ports:
-      - '2345:2345'

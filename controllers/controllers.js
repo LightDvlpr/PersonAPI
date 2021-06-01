@@ -1,14 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import mainDB from "../db/setConnect.js";
-import testDB from "../db/setConnectTest.js"
-
-let db;
-
-if(process.env.NODE_ENV.toLowerCase() == 'test'){
-   db = testDB
-} else {
-  db = mainDB
-}
+import db from "../db/setConnect.js";
 
 export const createPerson = async (req, res) => {
   try {
@@ -114,7 +105,7 @@ export const deletePerson = async (req, res) => {
       [personID])
       res.json(deleteFromPersonsVersions.rows)
     }
-    
+
     res.status(201)
   } catch (err) {
     console.log(err.message);
