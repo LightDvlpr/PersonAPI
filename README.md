@@ -11,8 +11,9 @@ Two installations are required. One for docker desktop and one for node.
 
 ### Docker
 
-Docker desktop will be used to run the entire application.      
-The reason we will be installing the docker desktop app as opoosed to the docker cli is due to the docker desktop app already having docker compose packaged with it     
+Docker desktop will be used to run the entire application.
+
+*Be sure to have Docker Compose available in your installation*   
 
 Install docker from [here](https://docs.docker.com/docker-for-mac/install/)
 
