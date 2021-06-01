@@ -1,11 +1,7 @@
 # PersonAPI
 
 PersonAPI is an API I designed from scratch that implements basic CRUD principles. 
-It is built using Node.js + Express.js/Postgres
-
-On top of that it is also designed to run via docker.   
-
-No need to set up/run commands on a bunch of different terminals and deal with random issues that you haven't checked on your computer just yet ;) 
+It is built using Node.js + Express.js/Postgres and can be run via Docker.
 
 Note: The below documentation has been constructed mostly for macOS. There might be an adjustment or two to be made for Windows.
 
@@ -13,22 +9,20 @@ Note: The below documentation has been constructed mostly for macOS. There might
 
 Two installations are required. One for docker and one for node. 
 
-## Docker
+### Docker
 
 Docker desktop will be used to run the entire application.      
 The reason we will be installing the docker desktop app as opoosed to the docker cli is due to the docker desktop app already having docker compose packaged with it     
 
 Install docker from [here](https://docs.docker.com/docker-for-mac/install/)
 
-## NPM
+### Node
 
-NPM will be used to run the test file for the routes. 
+Node will be used to run the test file for the routes. 
 
 Install node from [here](https://www.npmjs.com/get-npm)
 
-## Set it up
-
-Lets begin!
+### Set it up
 
 First thing's first, clone the repo. 
 
@@ -38,27 +32,19 @@ cd PersonAPI
 
 Before you run the application you need to set up the database connections and install node modules      
 
-run     
+Run this command to install the necessary node modules
 
 ```
 npm install
 ```
 
-Follow the below instructions for database connection set up
-
-Copy the EnvSample and create an .env 
-
-In your terminal enter in the following command
+Run this command to create a custom bridge Docker network
 
 ```
-ifconfig | grep "inet " | grep -v 127.0.0.1 | cut -d\  -f2
+docker network create -d bridge --subnet 192.168.0.0/24 --gateway 192.168.0.1 mynet
 ```
 
-Copy the value returned and place it equal to the HostIP variable in the .env file
-
-## Start up the application
-
-Now start up the application
+# Start up the application
 
 Run the following commands 
 
@@ -72,37 +58,41 @@ docker compose up
 
 After you run the above commands you'll notice 3 containers will be created. 
 
-Container 1: This will be the actual api that is run via `npm` thanks to our docker-compose.yml file    
-Container 2: This will be the database that our routes will be running against     
-Container 3: This will be pgAdmin. This program will allow for you see how the database is structured as well as the data that it contains.   
-Container 4: This will be our test database. We will use this to run our tests to avoid polluting the main database.
+Container 1: API    
+Container 2: Database     
+Container 3: Test Database
+Container 4: PgAdmin. (Database administration tool)
 
 # What you can do
 
 This API is built for you to be able to manage a database with people's information. 
 
-You are able to `create a person object`, `read a person object`, `read a person object + your preferred version`, `update a person object` and `delete a person object`.
+You are able to 
+>`create a person object`
+ `read a person object` 
+`read a person object + your preferred version`
+`update a person object`
+`delete a person object`.
 
 One particular feature of this application is that when you `update` an individual's information, a new version of that person will be created for that particular individual. 
 
 For instance, lets say you have an individual named bob smith.  His information will pop up as
 
 
-`firstName: bob, lastName: smith, age: 23, email: bobsmith@gmail.com`
+>`firstName: bob, lastName: smith, age: 23, email: bobsmith@gmail.com`
 
 Now lets say he's now 24. If you update his information you will have his previous information as well as the new info noted below:
 
-
-`firstName: bob, lastName: smith, age: 24, email: bobsmith@gmail.com`
+>`firstName: bob, lastName: smith, age: 24, email: bobsmith@gmail.com` 
 
 
 The first version of his info will be noted as Version 1. The second will be noted as Version 2. So on and so forth.
 
-In addition to various versions your updates + deletes will only occur on the latest version of that person object.
+In addition to versions, your updates and deletes will only occur on the latest version of that individual's info.
 
+# How to interact with the API
 
 This application can be interacted with via Postman or cURL commands. 
-
 Lets be a little daring and use cURL. 
 
 ## Create a Person
@@ -119,7 +109,8 @@ Age **required** `Needs to be an integer`
 
 
 Here's the cURL command:  
-You may change the key values as you'd like.
+
+>You may change the key values as you'd like.
 
 ```
 curl --location --request POST 'http://localhost:3000/persons' \
@@ -144,13 +135,13 @@ curl --location --request GET 'http://localhost:3000/persons'
 ## Read data on a specific person
 
 This will require you to interact with the results. I've designed the backend to create a different ID value for every single person.    
+
 In order for you to get the details of a specific person you'll need to grab their `pid` value. (pid = ID)
 
 How can you get that value? 
 
-The previous cURL command is what you can use to grab the `pid` for whichever person you like. 
+>The previous cURL command is what you can use to grab the `pid` for whichever person you like. 
 Once you copied it, replace it in the cURL command below where you see `ID`
-
 ```
 curl --location --request GET 'http://localhost:3000/persons/ID'
 ```
@@ -159,7 +150,7 @@ curl --location --request GET 'http://localhost:3000/persons/ID'
 
 This cURL command will allow for you to update the information on a particular individual. In addition to needing their `pid`, you will also need to update their information however you'd like. 
 
-Replace the `ID` value with the `pid`
+>Replace the `ID` value with the `pid`
 
 Enter in new values for whatever you'd like to change. (first name, middle name, last name, email, age)
 
@@ -180,10 +171,10 @@ curl --location --request PUT 'http://localhost:3000/persons/ID' \
 Now that you've updated a particular person's data, you now have two versions of one person. 
 Lets say you want to choose the first version of that person, not the default latest version of that person. 
 
-Here's the cURL command: 
-Remember to replace `ID` with your person's `pid`
-You'll also notice that right after the `ID` is version.
-That is to be replaced by the version you're looking for of this individual's information. You can change it accordingly to choose whichever version you'd like. 
+Here's the cURL command:     
+
+>Replace `ID` with your person's `pid`  
+Replace 'Version' with your preferred version number
 ***Assuming the version number exists of course***
 
 ```
@@ -203,7 +194,8 @@ curl --location --request GET 'http://localhost:3000/persons/ID/Version' \
 All things come to an end. Lets say a person no longer wants to be apart of your database. Fortunately you're able to delete them from your database with no trouble.
 
 Here's the cURL command:
-Remember to swap `ID` with your person's `pid`
+
+>Remember to swap `ID` with your person's `pid`
 
 ```
 curl --location --request DELETE 'http://localhost:3000/persons/ID'
@@ -216,8 +208,7 @@ PgAdmin allows you to explore the databse while you're running/entering in data 
 If you'd like to connect to PgAdmin then follow these instructions
 
 
-First, while the application is running
--- go to your browser and enter in the following address 
+First, while the application is running, go to your browser and enter in the following address 
 ```
 http://localhost:16543     
 ```
@@ -232,9 +223,7 @@ Third, after you've logged in, you'll need to connect to the server.
 - In the general section you may choose a name for the server. 
 - Switch over to the connection tab and enter in the following info   
 
-- Host : This is your host IP. In order for you to grab that, do the following       
---- Open a new terminal and enter in the following command :  `ifconfig |grep inet`      
---- Copy the value next to 'inet' -  Ex: '192.168.1.34' and paste that into the Host field.    
+- Host : `192.168.0.1`    
 
 - Port : `5432`
 - Maintenance database : `personalDB`
@@ -250,24 +239,24 @@ Third, after you've logged in, you'll need to connect to the server.
 --> Select Tables
 
 - Persons table keeps all IDs of the different people in your databse. 
--- To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
+    - To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
 
 - PersonsVersions is where all versions of each person is kept track of
--- To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
+    - To check all values in this table, Right click on it and click View/Edit Data and choose All Rows
 
 
-### Testing
+# Testing
 
 In order to run the test file make sure you have NPM installed.
 
-`cd` into the root directory of the project and run the command ```npm test``` while the containers are still running.     
+`cd` into the root directory of the project and run the command ```npm test``` in a separate terminal while the containers are running.     
 
-These tests will be run against an empty database that will allow us to avoid populating the main database.    
-Like the main database this one is also accessible through pgAdmin
+These tests will be run against our test database that will prevent us from populating the main database.    
+Just like the main database the test Database is also accessible through pgAdmin
 
 In order to access the test database through pgAdmin change the variables in the above pgAdmin access process to the following    
 
-- Host : `Remains the same`
+- Host : `192.168.0.1`
 - Port : `2345`
 - Maintenance database : `TestPersonalDB`
 - Username: `TestPostgres`

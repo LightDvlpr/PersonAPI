@@ -1,5 +1,14 @@
-import db from "../db/setConnect.js";
 import { v4 as uuidv4 } from "uuid";
+import mainDB from "../db/setConnect.js";
+import testDB from "../db/setConnectTest.js"
+
+let db;
+
+if(process.env.NODE_ENV.toLowerCase() == 'test'){
+   db = testDB
+} else {
+  db = mainDB
+}
 
 export const createPerson = async (req, res) => {
   try {
@@ -7,12 +16,12 @@ export const createPerson = async (req, res) => {
     const mainID = uuidv4();
     const { firstName, middleName, lastName, email, age } = req.body;
     const version = 1;
-    const items  = await db.query(
+    await db.query(
       "INSERT INTO person VALUES ($1)",
       [personID]
     );
     
-    const value = await db.query(
+    await db.query(
       "INSERT INTO personsVersions VALUES ($1, $2, $3, $4, $5, $6, $7, $8)",
       [mainID, firstName, middleName, lastName, email, age, version, personID]
     );

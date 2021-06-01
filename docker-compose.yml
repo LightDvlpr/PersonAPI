@@ -20,7 +20,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     environment:
-      NODE_ENV: production
+      NODE_ENV: TEST
     ports:
       - 3000:3000
     volumes:

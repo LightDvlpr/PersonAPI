@@ -5,7 +5,7 @@ dotenv.config();
 const Pool = PG.Pool
 const pool = new Pool({
   user: 'postgres',
-  host: process.env.HostIP,
+  host: '192.168.0.1',
   database: 'personalDB',
   password: 'password',
   port: 5432,
