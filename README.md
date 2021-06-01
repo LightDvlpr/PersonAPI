@@ -223,11 +223,11 @@ http://localhost:16543
 - In the general section you may choose a name for the server. 
 - Switch over to the connection tab and enter in the following info:    
 
-` Host : 192.168.0.1`    
-`Port : 5432`
-`Maintenance database : personalDB`
-`Username: postgres`
-`Password: password`
+` Host : 192.168.0.1`     
+`Port : 5432`      
+`Maintenance database : personalDB`      
+`Username: postgres`      
+`Password: password`      
 
 > Click on 'Save' and you are now connected to the server!
 
