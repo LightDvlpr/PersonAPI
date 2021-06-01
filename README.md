@@ -246,13 +246,19 @@ To check all values in this table, Right click on it and click View/Edit Data an
 
 # Testing
 
-In order to run the test file make sure you have NPM installed.
+In order to run the test file make sure you have Node installed.
 
-`cd` into the root directory of the project and run the command ```npm test``` in a separate terminal while the containers are running.     
+`cd` into the root directory of the project in a separate terminal
 
-These tests will be run against our test database that will prevent us from populating the main database.    
-Just like the main database the test Database is also accessible through pgAdmin
+run the command while the containers are alive
 
+```npm test``` 
+
+
+These tests will be run against our test database.
+
+
+>Just like the main database the test Database is also accessible through pgAdmin
 In order to access the test database through pgAdmin change the variables in the above pgAdmin access process to the following    
 
 `Host : 192.168.0.1`
