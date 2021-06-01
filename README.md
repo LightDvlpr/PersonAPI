@@ -259,12 +259,12 @@ run the command while the containers are alive
 These tests will be run against our test database.
 
 
->Just like the main database the test Database is also accessible through pgAdmin
+>Just like the main database the test Database is also accessible through pgAdmin       
 In order to access the test database through pgAdmin change the variables in the above pgAdmin access process to the following    
 
-`Host : 192.168.0.1`
-`Port : 2345`
-`Maintenance database : TestPersonalDB`
-`Username: TestPostgres`
-`Password: password`
+`Host : 192.168.0.1`.     
+`Port : 2345`.    
+`Maintenance database : TestPersonalDB`.   
+`Username: TestPostgres`.   
+`Password: password`.    
 
