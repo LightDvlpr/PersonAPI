@@ -47,14 +47,10 @@ docker network create -d bridge --subnet 192.168.0.0/24 --gateway 192.168.0.1 my
 
 # Start up the application
 
-Run the following commands 
+Run the following command
 
 ```bash
-docker compose build
-```
-
-```bash
-docker compose up
+docker compose up --build
 ```
 
 After you run the above commands you'll notice 3 containers will be created. 
